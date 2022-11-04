@@ -1,0 +1,9 @@
+[submodule "third-party/sdl"]
+	path = third-party/sdl
+	url = https://github.com/libsdl-org/SDL
+[submodule "third-party/vk-bootstrap"]
+	path = third-party/vk-bootstrap
+	url = https://github.com/charles-lunarg/vk-bootstrap
+[submodule "third-party/vma"]
+	path = third-party/vma
+	url = https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator
