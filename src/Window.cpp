@@ -1,5 +1,5 @@
 #include "Window.h"
-#include "SDL_vulkan.h"
+#include <SDL2/SDL_vulkan.h>
 
 namespace crucible
 {
@@ -19,7 +19,7 @@ namespace crucible
 
     Window::~Window()
     {
-        SDL_DestroyWindow(_handle);
+
     }
 
     int Window::width()
@@ -46,6 +46,7 @@ namespace crucible
         }
         delete(_swapChain);
         vkDestroySurfaceKHR(CrucibleLib::vulkanInstance(),_surface, nullptr);
+        SDL_DestroyWindow(_handle);
     }
 
     void Window::onResize()

@@ -12,12 +12,13 @@ namespace crucible
 
     void CrucibleLib::init(bool includeValidationLayers)
     {
-        if(SDL_Init(SDL_INIT_EVERYTHING))
+        if(SDL_Init(SDL_INIT_VIDEO))
         {
             throw std::runtime_error(SDL_GetError());
         }
         _using_validation_layers = includeValidationLayers;
         vkb::InstanceBuilder builder;
+
         auto instance_ret = builder.set_app_name("Crucible Application").request_validation_layers(_using_validation_layers).use_default_debug_messenger().build();
         if(!instance_ret.has_value())
         {
