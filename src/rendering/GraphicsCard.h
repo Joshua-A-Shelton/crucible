@@ -13,8 +13,6 @@ namespace crucible
         VkDevice _device = nullptr;
         VkQueue _graphicsQueue = nullptr;
         uint32_t _graphicsQueueFamily = 0;
-        VkCommandPool _commandPool = nullptr;
-        VkCommandBuffer  _mainCommandBuffer = nullptr;
         GraphicsCard()=default;
         ///must be called before use
         void init(vkb::Device& device);
@@ -25,10 +23,8 @@ namespace crucible
         friend class CrucibleLib;
         VkPhysicalDevice physicalDevice();
         VkDevice device();
-        void resetCommandBuffer();
-        //TODO delete this, submit sub buffers instead
-        VkCommandBuffer mainCommandBuffer();
         VkQueue graphicsQueue();
+        uint32_t graphicsQueueFamily();
     };
 } // rendering
 #endif //CRUCIBLE_GRAPHICSCARD_H

@@ -3,7 +3,9 @@
 
 #include <vulkan/vulkan.h>
 #include "../CrucibleLib.h"
+#include "Texture.h"
 #include <vector>
+#include "CommandBuffer.h"
 
 namespace crucible
 {
@@ -21,12 +23,17 @@ namespace crucible
         VkFormat _swapchainImageFormat;
         std::vector<VkImage> _swapchainImages;
         std::vector<VkImageView> _swapchainImageViews;
+        std::vector<VkCommandBuffer> _commandBuffers;
         VkSurfaceKHR _surface;
         RenderMode _renderMode = VSYNC;
         unsigned int _width, _height;
-        VkSemaphore _presentSemaphore = nullptr, _renderSemaphore = nullptr;
-        VkFence _renderFence = nullptr;
+        std::vector<VkSemaphore> _imageAvailableSemaphores;
+        std::vector<VkSemaphore> _renderFinishedSemaphores;
+        std::vector<VkFence> _inFlightFences;
+        VkCommandPool _commandPool;
         uint32_t _swapchainImageIndex = 0;
+        uint32_t _currentFrameIndex = 0;
+        uint32_t _maxFramesInFlight = 0;
         VkClearValue _clearColor = {0,0,1.0,1};
         Swapchain(VkSurfaceKHR surface, int width, int height);
         void recreateSwapchain();
@@ -41,6 +48,8 @@ namespace crucible
         VkImage currentColorImage();
         VkImageView currentColorAttachment();
         VkRenderingAttachmentInfoKHR currentColorAttachmentInfo();
+        VkCommandBuffer currentCommandBuffer();
+        void submitCommands();
         friend class Window;
     };
 

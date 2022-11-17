@@ -2,7 +2,7 @@
 #define CRUCIBLE_WINDOW_H
 
 #include <memory>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "rendering/Swapchain.h"
 namespace crucible
 {

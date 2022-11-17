@@ -1,5 +1,5 @@
 #include "CrucibleLib.h"
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <VkBootstrap.h>
 #include <stdexcept>
 
@@ -26,6 +26,7 @@ namespace crucible
         }
         _vulkan_instance = instance_ret->instance;
         _vulkan_debug_messenger = instance_ret->debug_messenger;
+
 
         vkb::PhysicalDeviceSelector selector{instance_ret.value()};
         vkb::PhysicalDevice physicalDevice = selector.set_minimum_version(1,3).defer_surface_initialization().require_dedicated_transfer_queue().select().value();
